@@ -1,49 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moving Target Game</title>
 
-    <title>My First Game</title>
-    <link rel="stylesheet" href="style.css">
-</head>
 <style>
-button {
-  width: 80%;
-  padding: 20px;
-  font-size: 22px;
+body {
+  margin: 0;
+  font-family: Arial;
+  text-align: center;
+}
+
+#target {
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   border-radius: 10px;
 }
 </style>
+</head>
+
 <body>
-<body style="margin:0; text-align:center; font-family:Arial;">
 
-
-<h2>🔥 Tap Master Game 🔥</h2>
-<p>Time Left: <span id="time">10</span> sec</p>
+<h2>🎯 Catch Me Game</h2>
 <p>Score: <span id="score">0</span></p>
 
-<button id="btn" style="padding:20px 40px; font-size:20px;">
-    CLICK FAST
-</button>
+<div id="target"></div>
+
 <script>
 let score = 0;
-let time = 10;
+let target = document.getElementById("target");
 
-let timer = setInterval(function () {
-    time--;
-    document.getElementById("time").innerText = time;
+function moveTarget() {
+  let x = Math.random() * (window.innerWidth - 100);
+  let y = Math.random() * (window.innerHeight - 100);
+  target.style.left = x + "px";
+  target.style.top = y + "px";
+}
 
-    if (time === 0) {
-        clearInterval(timer);
-        document.getElementById("btn").disabled = true;
-        alert("Game Over! Your Score: " + score);
-    }
-}, 1000);
-
-document.getElementById("btn").onclick = function () {
-    score++;
-    document.getElementById("score").innerText = score;
+target.onclick = function () {
+  score++;
+  document.getElementById("score").innerText = score;
+  moveTarget();
 };
+
+moveTarget();
 </script>
+
 </body>
 </html>
