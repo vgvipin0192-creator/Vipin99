@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tap Box Game</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  text-align: center;
+}
+
+#game {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  background: #f2f2f2;
+}
+
+#box {
+  width: 80px;
+  height: 80px;
+  background: red;
+  position: absolute;
+  border-radius: 10px;
+}
+</style>
+</head>
+<body>
+<h2>🎮 Tap Box Game</h2>
+<p>Score: <span id="score">0</span></p>
+<div id="game">
+  <div id="box"></div>
+</div>
+<script>
+let score = 0;
+let box = document.getElementById("box");
+let game = document.getElementById("game");
+
+function moveBox() {
+  let maxX = game.clientWidth - 80;
+  let maxY = game.clientHeight - 80;
+  let x = Math.random() * maxX;
+  let y = Math.random() * maxY;
+  box.style.left = x + "px";
+  box.style.top = y + "px";
+}
+
+box.onclick = function () {
+  score++;
+  document.getElementById("score").innerText = score;
+  moveBox();
+};
+
+moveBox();
+</script>
+</body>
+</html>
